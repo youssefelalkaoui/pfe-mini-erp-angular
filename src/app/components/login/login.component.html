@@ -1,0 +1,31 @@
+<div class="row mt-5">
+  <div class="col-md-6 mx-auto">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-lock" aria-hidden="true"></i> Authentification
+          </span> Dashboard
+        </h4>
+
+        <form>
+          <div class="form-group">
+            <label for=""> Login : </label>
+            <input type="text" name="login"  class="form-control" placeholder="login" [(ngModel)]="login">
+            <div class="form-group">
+              <label for=""> Mot de passe : </label>
+              <input type="password" name="password"  class="form-control" placeholder="Mot de passe" [(ngModel)]="password">
+            </div>
+          </div>
+          <input type="submit" value="Se connecter" class="btn btn-primary btn-block" (click)="onLogin()">
+        </form>
+
+      </div>
+    </div>
+    <br>
+    <ng-flash-message></ng-flash-message>
+
+  </div>
+</div>
+

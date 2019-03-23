@@ -1,0 +1,56 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Commercial </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Ajouter </li>
+  </ol>
+</nav>
+<div class="row mt-5">
+  <div class="col-md-10 mx-auto">
+    <div class="card">
+      <div class="card-header">
+        <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> une commande approvisionnement
+        </h4>
+      </div>
+      <div class="card-body">
+
+        <form>
+          <div class="form-row">
+            <div class="col-md-6 mb-3">
+              <label for="">Date commande :</label>
+              <input type="date" name="dateCommande" class="form-control" placeholder="Date commande" [(ngModel)]="commandeApp.dateApprovisionnement" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Etat commande :</label>
+              <select class="form-control" name="etatCommande" [(ngModel)]="commandeApp.etatCommande">
+                <option  value="en cours" > En cours </option>
+                <option  value="effectue" > Effectuée </option>
+
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Etat facture :</label>
+              <select class="form-control" name="etatFacture" [(ngModel)]="commandeApp.etatFacture">
+                <option  value="non paye" > Non payée </option>
+                <option  value="paye" > payée </option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Fournisseur :</label>
+              <select class="form-control" name="idFournisseur" [(ngModel)]="commandeApp.idFournisseur">
+                <option *ngFor="let p of fournisseurs"  [ngValue] = "p.idFournisseur" > {{p.nomFournisseur}} </option>
+              </select>
+            </div>
+          </div>
+          <input type="submit" value="Ajouter" class="btn btn-primary" (click)="addAchat()">
+        </form>
+      </div>
+    </div>
+    <br>
+    <ng-flash-message></ng-flash-message>
+
+  </div>
+</div>
+

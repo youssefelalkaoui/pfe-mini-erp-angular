@@ -1,0 +1,62 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Admin </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Détails </li>
+  </ol>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-12" >
+      <div class="card card-info">
+        <div class="card-header">
+          <h3 class="card-title">Détails utilisateur</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3 col-lg-3" align="center">
+              <img src = "assets/avatar.png"  alt="" class="btn-md" width="150px" height="150px" class="img-circle img-responsive">
+            </div>
+
+            <div class=" col-md-9 col-lg-9 ">
+              <table class="table table-user-information">
+                <tbody>
+                <tr>
+                  <td>Nom et prénom</td><td>{{employe.nom}} {{employe.prenom}}</td>
+                </tr>
+                <tr>
+                  <td>Type du profil :</td><td>{{employe.typeEmploye}}</td>
+                </tr>
+                <tr>
+                  <td>Date de naissance :</td><td>{{employe.dateNaissance | date:"dd-MMM-yyyy"  }}</td>
+                </tr>
+                <tr>
+                <tr>
+                  <td>Login : </td><td>{{employe.login}}</td>
+                </tr>
+                <tr>
+                  <td>Mot de passe :</td><td>{{employe.password}}</td>
+                </tr>
+                <tr>
+                  <td>Email :</td><td>{{employe.email}}</td>
+                </tr>
+                <td>Salaire :</td>
+                <td>{{employe.salaire}} DH<br>
+                </td>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <a type="button" class="btn btn-sm btn-primary" routerLink="/users"> <i class="fa fa-backward"> </i> Accueil </a>
+          <span class="pull-right">
+           <a type="button" class="btn btn-sm btn-warning mr-5" (click)="onEditUser(employe.idUtilisateur)"><i class="fa fa-edit"></i> Modifier</a>
+           <a type="button" class="btn btn-sm btn-danger text-white" (click)="onDeleteUser(employe)"><i class="fa fa-remove"></i> Supprimer</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

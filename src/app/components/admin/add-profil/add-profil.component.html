@@ -1,0 +1,89 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Admin </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Ajouter </li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="col-md-10 mx-auto">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> un nouveau profil
+        </h4>
+        <br>
+        <form>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="">Nom :</label>
+              <input type="text" name="nom" class="form-control"  placeholder="Nom" [(ngModel)]="employe.nom" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="">Prénom :</label>
+              <input type="text" name="prenom" class="form-control"  placeholder="Prénom" [(ngModel)]="employe.prenom" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="">Login :</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" >@</span>
+                </div>
+                <input type="text" name="login" class="form-control" placeholder="Login" [(ngModel)]="employe.login" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-4 mb-3">
+              <label for="">Mot de passe :</label>
+              <input type="password" name="password" class="form-control" placeholder="Mot de passe" [(ngModel)]="employe.password" required>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for=""> Type profil : </label>
+              <select class="form-control" name="typeuser" [(ngModel)]="employe.typeEmploye" required>
+                <option value="admin">Admin</option>
+                <option value="commercial">Commercial</option>
+                <option value="rh">RH</option>
+              </select>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label for="">Date de naissance :</label>
+              <input type="date" name="dateNaissance" class="form-control" placeholder="Date de naissance" [(ngModel)]="employe.dateNaissance" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-md-3 mb-3">
+              <label for="">Email :</label>
+              <input type="text" name="email" class="form-control"  placeholder="Email" [(ngModel)]="employe.email" required>
+            </div>
+            <div class="col-md-3 mb-3">
+              <label for="">Salaire :</label>
+              <input type="number" name="salaire" class="form-control"  placeholder="Salaire" [(ngModel)]="employe.salaire" required>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Photo de profil :</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" ><i class="fa fa-user-circle"></i></span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" name="avatar" [(ngModel)]="employe.avatar" required>
+                  <label class="custom-file-label" for="">Choisir... </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="submit" value="Ajouter" class="btn btn-primary" (click)="onSave()">
+
+        </form>
+
+      </div>
+    </div>
+    <br>
+    <ng-flash-message></ng-flash-message>
+
+  </div>
+</div>
+

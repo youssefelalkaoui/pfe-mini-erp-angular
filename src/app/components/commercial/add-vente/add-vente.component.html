@@ -1,0 +1,69 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Commercial </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Ajouter </li>
+  </ol>
+</nav>
+<div class="row">
+  <div class="col-md-10 mx-auto">
+
+    <div class="card">
+      <div class="card-body">
+        <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> une commande vente
+        </h4>
+        <form>
+          <div class="form-row">
+          <div class="col-md-6 mb-3">
+              <label for="">Nom client :</label>
+              <input type="text" name="nomClient" class="form-control" placeholder="Nom client" [(ngModel)]="commandeVente.nomClient" required>
+            </div>
+              <div class="col-md-6 mb-3">
+                <label for="">Prenom client :</label>
+                <input type="text" name="prenomClient" class="form-control" placeholder="Prenom client" [(ngModel)]="commandeVente.prenomClient" required>
+              </div>
+          </div>
+          <div class="form-row">
+          <div class="col-md-6 mb-3">
+                  <label for="">Tel :</label>
+                  <input type="tel" name="tel" class="form-control" placeholder="Tel" [(ngModel)]="commandeVente.tel" required>
+                </div>
+                  <div class="col-md-6 mb-3">
+                    <label for="">Adresse livraison :</label>
+                    <input type="text" name="adresseLivraison" class="form-control" placeholder="Adresse livraison" [(ngModel)]="commandeVente.adresseLivraison" required>
+                  </div>
+          </div>
+          <div class="form-row">
+          <div class="col-md-6 mb-3">
+                <label for="">Date commande :</label>
+                <input type="date" name="dateCommande" class="form-control" placeholder="Date commande" [(ngModel)]="commandeVente.dateCommande" required>
+              </div>
+            <div class="col-md-6 mb-3">
+              <label for="">Etat commande :</label>
+              <select class="form-control" name="etatCommande" [(ngModel)]="commandeVente.etatCommande">
+                <option  value="en cours" > En cours </option>
+                <option  value="effectue" > Effectuée </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+          <div class="col-md-6 mb-3">
+              <label for="">Etat facture :</label>
+              <select class="form-control" name="etatFacture" [(ngModel)]="commandeVente.etatFacture">
+                <option  value="non paye" > Non payée </option>
+                <option  value="paye" > payée </option>
+              </select>
+            </div>
+          </div>
+          <input type="submit" value="Ajouter" class="btn btn-primary" (click)="addVente()">
+        </form>
+      </div>
+    </div>
+    <br>
+    <ng-flash-message></ng-flash-message>
+
+  </div>
+</div>
+

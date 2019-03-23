@@ -1,0 +1,73 @@
+<a class="btn btn-warning" href="javascript:void(0);"  (click)="print()"> <i class="fa fa-print text-secondary"></i> <b> Imprimer </b></a>
+
+<div id="bon">
+  <p class="h6 text-danger mt-4">&copy; SupMTI 2017-2018 - Système de gestion intégré -</p>
+  <h3 class="text-primary text-center p-2"> <u> Bon de commande </u> </h3>
+<div class="card card-info">
+  <div class="card-header bg-light text-info">
+    <br>
+    <h6 class="card-title">
+        Détails achat : {{ today | date:'fullDate' }}
+    </h6>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <tr>
+        <th>ID</th>
+        <th>Date achat</th>
+        <th>Etat commande</th>
+        <th>Etat facture</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>{{ commandeApp.idApprovisionnement }}</td>
+        <td>{{ commandeApp.dateApprovisionnement | date:"dd/MM/yyyy"  }}</td>
+        <td>{{ commandeApp.etatCommande }}</td>
+        <td>{{ commandeApp.etatFacture }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <div class="card">
+      <div class="card-header text-info"> Détails des produits </div>
+      <div class="card-body">
+
+        <table class="table table-striped">
+          <thead class="thead-inverse">
+          <tr>
+            <th>Commande ID</th>
+            <th>Détails ID</th>
+            <th>Produit</th>
+            <th>Fournisseur</th>
+            <th>Prix</th>
+            <th>Quantité</th>
+            <th>Total</th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let row of pageDetailsAchats;let i = index; ">
+            <td> {{row[2].idApprovisionnement}} </td>
+            <td> {{row[0].idDetails}} </td>
+            <td> {{row[1].nomProduit}} </td>
+            <td> {{row[2].fournisseur.nomFournisseur}} </td>
+            <td> {{row[0].prixAchat}} </td>
+            <td> {{row[0].quantite}} </td>
+            <th> {{row[0].prixAchat*row[0].quantite}},00 DH</th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <h4 class="text-primary text-center p-2"> <u> Signature : </u> </h4>
+    <br>
+    <br>
+    <br>
+  </div>
+</div>
+</div>

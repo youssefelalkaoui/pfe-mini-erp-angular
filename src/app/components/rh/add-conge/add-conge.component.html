@@ -1,0 +1,80 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> R.H </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Ajouter congé </li>
+  </ol>
+</nav>
+<table class="table table-striped">
+  <thead class="thead-inverse">
+  <tr>
+    <th>ID</th>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Date naissance</th>
+     <th>Type employe</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{ employe.idUtilisateur }}</td>
+    <td>{{ employe.nom }}</td>
+    <td>{{ employe.prenom }}</td>
+    <td>{{ employe.dateNaissance | date:"dd/MM/yyyy"  }}</td>
+    <td>{{employe.typeEmploye}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <div class="card-header"> Détails des produits </div>
+  <div class="card-body">
+
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Congé ID</th>
+        <th>Date Début</th>
+        <th>Date fin</th>
+        <th>Modifier</th>
+        <th>Supprimer</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let e of pageDetailsConges">
+        <td>{{ e.idConge }}</td>
+        <td>{{ e.dateDebut | date:"dd/MMM/yyyy" }}</td>
+        <td>{{ e.dateFin | date:"dd/MMM/yyyy" }}</td>
+        <td><a class="nav-link" href="javascript:void(0);" (click)="onEditConge(e.idConge)" ><i class="fa fa-edit"></i> edit</a></td>
+        <td><a class="nav-link" href="javascript:void(0);" (click)="onDeleteConge(e.idConge)"> <i class="fa fa-minus-circle"></i> delete </a></td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<br>
+<ng-flash-message></ng-flash-message>
+<div class="card">
+  <div class="card-body">
+    <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> un congé
+    </h4>
+    <form>
+      <div class="form-row">
+        <div class="col-md-6 mb-3">
+          <label for="">Date début :</label>
+          <input type="date" name="dateDebut" class="form-control"  placeholder="Date début" [(ngModel)]="conge.dateDebut"  required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label for="">Date fin :</label>
+          <input type="date" name="dateFin" class="form-control"  placeholder="Date fin" [(ngModel)]="conge.dateFin" required>
+        </div>
+      </div>
+      <input type="submit" value="Ajouter" class="btn btn-primary" (click)="addConge()">
+
+    </form>
+
+  </div>
+</div>

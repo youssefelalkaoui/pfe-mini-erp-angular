@@ -1,0 +1,100 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Commercial </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Détails achat </li>
+  </ol>
+</nav>
+<ng-flash-message></ng-flash-message>
+<table class="table table-striped">
+  <thead class="thead-inverse">
+  <tr>
+    <th>ID</th>
+    <th>Date achat</th>
+    <th>Etat commande</th>
+    <th>Etat facture</th>
+    <th>Détalis</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th  *ngIf="type == 'admin'">Accepter</th>
+    <th>Imprimer</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{ commandeApp.idApprovisionnement }}</td>
+    <td>{{ commandeApp.dateApprovisionnement | date:"dd/MM/yyyy"  }}</td>
+    <td>{{ commandeApp.etatCommande }}</td>
+    <td>{{ commandeApp.etatFacture }}</td>
+
+    <td><a class="nav-link" href="javascript:void(0);" routerLink="/achats" ><i class="fa fa-info-circle"></i> Retour</a></td>
+    <td><a class="nav-link" href="javascript:void(0);" (click)="onEditAchat(commandeApp.idApprovisionnement)" ><i class="fa fa-edit text-warning"></i> edit</a></td>
+    <td><a class="nav-link" href="javascript:void(0);" (click)="onDeleteAchat(commandeApp)"> <i class="fa fa-minus-circle text-danger"></i> delete </a></td>
+    <td  *ngIf="type == 'admin'"><a class="nav-link" href="javascript:void(0);" (click)="onAccept(commandeApp.idApprovisionnement)"> <i class="fa fa-check text-success"></i> Valider </a></td>
+    <td><a class="nav-link" href="javascript:void(0);"  (click)="imprimer(commandeApp.idApprovisionnement)"> <i class="fa fa-print text-secondary"></i> Imprimer</a>
+  </tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <div class="card-header"> Détails des produits </div>
+  <div class="card-body">
+
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Commande ID</th>
+        <th>Détails ID</th>
+        <th>Produit</th>
+        <th>Fournisseur</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of pageDetailsAchats;let i = index;">
+        <td> {{row[2].idApprovisionnement}} </td>
+        <td> {{row[0].idDetails}} </td>
+        <td> {{row[1].nomProduit}} </td>
+        <td> {{row[2].fournisseur.nomFournisseur}} </td>
+        <td> {{row[0].prixAchat}} </td>
+        <td> {{row[0].quantite}} </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+<br>
+<div class="card">
+  <div class="card-body">
+    <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> des produits à cette commande
+    </h4>
+    <form>
+      <div class="form-row">
+        <div class="col-md-4 mb-3">
+          <label for=""> Produits : </label>
+
+            <select class="form-control" name="produitId" [(ngModel)]="detailsApp.produitId">
+              <option *ngFor="let p of produits"  [ngValue] = "p.idProduit" > {{p.nomProduit}} </option>
+            </select>
+
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="">Prix d'achat :</label>
+          <input type="number" name="prixAchat" class="form-control"  placeholder="Prix" [(ngModel)]="detailsApp.prixAchat"  required>
+        </div>
+        <div class="col-md-4 mb-3">
+          <label for="">Quantité :</label>
+          <input type="number" name="quantite" class="form-control"  placeholder="Quantité" [(ngModel)]="detailsApp.quantite" required>
+        </div>
+      </div>
+      <input type="submit" value="Ajouter" class="btn btn-primary" (click)="addDetails()">
+
+    </form>
+
+  </div>
+</div>

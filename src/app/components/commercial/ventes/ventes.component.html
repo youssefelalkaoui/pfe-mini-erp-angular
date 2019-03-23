@@ -1,0 +1,54 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Commercial </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Ventes </li>
+  </ol>
+</nav>
+<div class="card">
+  <div class="card-header"> Liste des ventes </div>
+  <div class="card-body">
+
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" name="motCle" placeholder="Recherche" aria-label="Search" [(ngModel)] = 'motCle'>
+      <button class="btn btn-success my-2 my-sm-0" type="submit" (click)="chercher()">Chercher</button>
+      <a class="btn btn-warning ml-auto" routerLink="/add-vente">Créer Vente</a>
+
+    </form>
+
+    <hr>
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <tr>
+        <th>ID</th>
+        <th>Date vente</th>
+        <th>Etat commande</th>
+        <th>Etat facture</th>
+        <th>Détalis</th>
+        <th>Edit</th>
+        <th>Delete</th>
+
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let v of pageVentes?.content">
+        <td>{{ v.idVente }}</td>
+        <td>{{ v.dateCommande | date:"dd/MM/yyyy"  }}</td>
+        <td>{{ v.etatCommande }}</td>
+        <td>{{ v.etatFacture }}</td>
+
+        <td><a class="nav-link" href="javascript:void(0);" (click)="getdetailsVente(v.idVente)" ><i class="fa fa-info-circle"></i> Afficher</a></td>
+        <td><a class="nav-link" href="javascript:void(0);" (click)="onEditVente(v.idVente)" ><i class="fa fa-edit"></i> edit</a></td>
+        <td><a class="nav-link" href="javascript:void(0);" (click)="onDeleteVente(v)"> <i class="fa fa-minus-circle"></i> delete </a></td>
+      </tr>
+      </tbody>
+    </table>
+    <div class="container">
+      <ul class="pagination">
+        <li class="page-item" [ngClass]="{'active':i == currentPage}"  *ngFor="let p of pages; let i = index" >
+          <a class="page-link"   (click)="gotoPage(i)"> {{ i }} </a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</div>

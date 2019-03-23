@@ -1,0 +1,93 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#"> Commercial </a></li>
+    <li class="breadcrumb-item active" aria-current="page"> Détails vente </li>
+  </ol>
+</nav>
+<div id="contentToConvert">
+<table class="table table-striped">
+  <thead class="thead-inverse">
+  <tr>
+    <th>ID</th>
+    <th>Date vente</th>
+    <th>Etat commande</th>
+    <th>Etat facture</th>
+    <th>Détalis</th>
+    <th>Edit</th>
+    <th>Delete</th>
+    <th>Imprimer</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>{{ commandeVente.idVente }}</td>
+    <td>{{ commandeVente.dateCommande | date:"dd/MM/yyyy"  }}</td>
+    <td>{{ commandeVente.etatCommande }}</td>
+    <td>{{ commandeVente.etatFacture }}</td>
+
+    <td><a class="nav-link" href="javascript:void(0);" routerLink="/ventes" ><i class="fa fa-info-circle"></i> Retour</a></td>
+    <td><a class="nav-link" href="javascript:void(0);" (click)="onEditVente(commandeVente.idVente)" ><i class="fa fa-edit text-warning"></i> edit</a></td>
+    <td><a class="nav-link" href="javascript:void(0);" (click)="onDeleteVente(commandeVente)"> <i class="fa fa-minus-circle text-danger"></i> delete </a></td>
+  <td><a class="nav-link" href="javascript:void(0);"  (click)="imprimer()"> <i class="fa fa-print text-success"></i> Imprimer</a>
+  </td>
+  </tr>
+  </tbody>
+</table>
+
+<div class="card">
+  <div class="card-header"> Détails des produits </div>
+  <div class="card-body">
+
+    <table class="table table-striped">
+      <thead class="thead-inverse">
+      <tr>
+        <th>Produit</th>
+        <th>Prix</th>
+        <th>Quantité</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of pageDetailsVentes;let i = index;">
+        <td> {{row[1].nomProduit}} </td>
+        <td> {{row[0].prixVente}} </td>
+        <td> {{row[0].quantite}} </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+</div>
+
+<br>
+<div class="card">
+  <div class="card-body">
+    <h4 class="text-center">
+          <span class="text-primary">
+            <i class="fa fa-user-plus" aria-hidden="true"></i> Ajouter
+          </span> des produits à cette commande
+    </h4>
+    <form>
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for=""> Produits : </label>
+
+          <select class="form-control" name="produitId" [(ngModel)]="detailsVente.produitId">
+            <option *ngFor="let p of produits"  [ngValue] = "p.idProduit" > {{p.nomProduit}} </option>
+          </select>
+
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="">Prix d'achat :</label>
+          <input type="number" name="prixAchat" class="form-control"  placeholder="Prix" [(ngModel)]="detailsVente.prixVente"  required>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="">Quantité :</label>
+          <input type="number" name="quantite" class="form-control"  placeholder="Quantité" [(ngModel)]="detailsVente.quantite" required>
+        </div>
+      </div>
+      <input type="submit" value="Ajouter" class="btn btn-primary" (click)="addDetails()">
+
+    </form>
+  </div>
+</div>

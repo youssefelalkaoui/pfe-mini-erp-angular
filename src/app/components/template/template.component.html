@@ -1,0 +1,106 @@
+<nav class="navbar fixed-top navbar-expand-md navbar-dark bg-primary mb-3">
+  <div class="flex-row d-flex">
+    <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas" title="Toggle responsive left sidebar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="" title="Free Bootstrap 4 Admin Template" routerLink="/">Systéme de gestion intégré</a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse" id="collapsingNavbar">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active"  *ngIf="connected">
+        <a class="nav-link" href="javascript:void(0);"> <i class="fa fa-user" aria-hidden="true"></i> {{ type }} </a>
+      </li>
+      <li class="nav-item active"  *ngIf="connected">
+        <a class="nav-link" href="javascript:void(0);"  (click)="logout()">
+          <i class="fa fa-sign-out" aria-hidden="true"></i> Déconnecter </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" id="main">
+  <div class="row row-offcanvas row-offcanvas-left">
+    <!--  Menu gauche -->
+    <div class="sidebar-offcanvas bg-dark" id="sidebar" role="navigation" *ngIf="connected">
+
+      <!-- menu admin  -->
+      <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3" *ngIf="type == 'admin'">
+        <span class="bg-secondary text-white p-2"> <i class="fa fa-cogs text-primary" aria-hidden="true"></i> <b> Espace administrateur </b> </span>
+        <li class="nav-item "><a class="nav-link" href="javascript:void(0);" routerLink="/"> <i class="fa fa-home text-warning" aria-hidden="true"> </i> Accueil </a> </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#submenu1" data-toggle="collapse" data-target="#submenu1">
+            <i class="fa fa-user text-warning" aria-hidden="true"></i> Gestion de profils <i class="fa fa-arrow-circle-down text-success"></i></a>
+          <ul class="list-unstyled pl-3 collapse" id="submenu1" aria-expanded="false">
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/add-profil"> <i class="fa fa-edit text-info" aria-hidden="true"></i> Ajouter nouveau</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/users"> <i class="fa fa-list text-info" aria-hidden="true"></i> Afficher</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#submenu2" data-toggle="collapse" data-target="#submenu2">
+            <i class="fa fa-tasks text-warning" aria-hidden="true"></i> Ressource Humaines <i class="fa fa-arrow-circle-down text-primary"></i></a>
+          <ul class="list-unstyled flex-column pl-3 collapse" id="submenu2" aria-expanded="false">
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/profils"> <i class="fa fa-home text-info" aria-hidden="true"></i> Profils</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/conge"> <i class="fa fa-calendar-check-o  text-info" aria-hidden="true"></i> Conges</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/recrutements"> <i class="fa fa-tasks text-info" aria-hidden="true"></i> Recrutement</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/absences"> <i class="fa fa-check-square text-info" aria-hidden="true"></i> Absence & Pointage</a></li>
+            <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/paiements"> <i class="fa fa-money text-info" aria-hidden="true"></i> paiements</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/ventes"> <i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i> Ventes</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/achats"> <i class="fa fa-shopping-basket text-warning" aria-hidden="true"></i> Achats</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/admin-statistiques"> <i class="fa fa-area-chart text-warning" aria-hidden="true"></i> Statistiques</a></li>
+      </ul>
+
+      <!-- menu commercial  -->
+
+        <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3" *ngIf="type == 'commercial'">
+          <span class="bg-info text-white p-2 pl-3 pr-3"> <i class="fa fa-cogs text-danger" aria-hidden="true"></i> <b> Espace commercial </b> </span>
+        <li class="nav-item "><a class="nav-link" href="javascript:void(0);" routerLink="/"> <i class="fa fa-home text-warning" aria-hidden="true"> </i> Accueil </a> </li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/ventes"> <i class="fa fa-shopping-cart text-warning" aria-hidden="true"></i> Ventes</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/achats"> <i class="fa fa-shopping-basket text-warning" aria-hidden="true"></i> Achats</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/admin-statistiques"> <i class="fa fa-area-chart text-warning" aria-hidden="true"></i> Statistiques</a></li>
+      </ul>
+
+      <!-- menu rh  -->
+
+        <ul class="nav flex-column sticky-top pl-0 pt-5 mt-3" *ngIf="type == 'rh'">
+          <span class="bg-success text-white p-2 pl-3 pr-3"> <i class="fa fa-cogs text-warning" aria-hidden="true"></i> <b> Espace R.H </b> </span>
+        <li class="nav-item "><a class="nav-link" href="javascript:void(0);" routerLink="/"> <i class="fa fa-home text-info" aria-hidden="true"> </i> Accueil </a> </li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/profils"> <i class="fa fa-home text-info" aria-hidden="true"></i> Profils</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/conge"> <i class="fa fa-calendar-check-o  text-info" aria-hidden="true"></i> Conges</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/recrutements"> <i class="fa fa-tasks text-info" aria-hidden="true"></i> Recrutement</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/absences"> <i class="fa fa-check-square text-info" aria-hidden="true"></i> Absence & Pointage</a></li>
+        <li class="nav-item"><a class="nav-link" href="javascript:void(0);" routerLink="/paiements"> <i class="fa fa-money text-info" aria-hidden="true"></i> paiements</a></li>
+      </ul>
+    </div>
+
+    <div class="col main pt-5 mt-3">
+      <!-- contenu  -->
+      <router-outlet></router-outlet>
+
+      <!-- fin contenu  -->
+      <!-- footer  -->
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+        <hr>
+        <ul class="list-unstyled list-inline social text-center">
+          <li class="list-inline-item"><a href="javascript:void(0);"><i class="fa fa-facebook"></i></a></li>
+          <li class="list-inline-item"><a href="javascript:void(0);"><i class="fa fa-twitter"></i></a></li>
+          <li class="list-inline-item"><a href="javascript:void(0);"><i class="fa fa-instagram"></i></a></li>
+          <li class="list-inline-item"><a href="javascript:void(0);"><i class="fa fa-google-plus"></i></a></li>
+          <li class="list-inline-item"><a href="javascript:void(0);" target="_blank"><i class="fa fa-envelope"></i></a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-primary">
+        <p class="h6">&copy; 2017-2018 Tous droits réservés. SupMTI - Système de gestion intégré -</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
